@@ -39,6 +39,7 @@ const validateForm = (event) => {
         const input = document.querySelector("#email")
         const error = input.nextElementSibling
         const invalidError = error.nextElementSibling
+        
         const inputValue = input.value;
         const emailPattern = /\S+@\S+\.\S+/.test(inputValue);
 

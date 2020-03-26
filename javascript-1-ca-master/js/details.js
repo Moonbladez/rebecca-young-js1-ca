@@ -17,7 +17,7 @@ const fetchData = async () => {
         .then((response) => response.json())
         .then((json) => characterInfo(json))
         .catch(() => {
-            window.location = "/javascript-1-ca-master/error.html"
+            window.location = "error.html"
         })
 
 }
@@ -27,6 +27,11 @@ const fetchData = async () => {
 let markup = "";
 const characterInfo = (details) => {
     const container = document.querySelector(".detail-container")
+
+    //loader information
+    const loader = document.querySelector(".loader")
+    //hide loader
+    loader.style.display = "none"
     const {
         name,
         status,
@@ -37,7 +42,6 @@ const characterInfo = (details) => {
     } = details
     console.dir(details)
     markup += `
-    <div class="detail-container">
     <img class="details-image" src="${image}" alt="${name}" />
     <div class="detail-details">
         <h1>${name}</h1>
@@ -46,7 +50,6 @@ const characterInfo = (details) => {
         <p>Origin: <span class="value" id="origin">${origin.name}</span></p>
         <p>Location: <span class="value" id="location">${location.name}</span></p>                   
     </div>
-</div>
     `
     container.innerHTML = markup
 
