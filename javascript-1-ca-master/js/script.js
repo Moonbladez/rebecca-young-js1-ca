@@ -8,13 +8,15 @@ const fetchData = async () => {
     return await fetch(baseUrl)
         .then((response) => response.json())
         .then((json) => json)
-    // .catch(window.location.href = "/error.html")
+        .catch(() => {
+            window.location = "/javascript-1-ca-master/error.html"
+        })
 }
 
 //loop through results
 const iterateCharacters = (json) => {
     const results = json.results
-    // console.log(results)
+
 
     //render html
     const container = document.querySelector(".results")
@@ -42,7 +44,7 @@ const iterateCharacters = (json) => {
                     <h4 class="name">${name}</h4>
                     <p>Type: ${ type ? type : " Unknown"}</p>    
                     <p>Episode count: ${episode.length}</p>                                  
-                    <a class="btn btn-primary" href="details.html?id=${result.id}">Details</a>
+                    <a class="btn btn-primary" href="details.html?id=${id}">Details</a>
                 </div>
             </div>
         </div>

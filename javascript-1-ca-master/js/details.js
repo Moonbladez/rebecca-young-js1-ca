@@ -6,7 +6,7 @@ let id;
 if (params.has("id")) {
     id = params.get("id");
 } else {
-    document.location.href = "/";
+    document.location.href = "/javascript-1-ca-master/";
 }
 
 const baseUrl = "https://rickandmortyapi.com/api/character/"
@@ -16,7 +16,9 @@ const fetchData = async () => {
     return await fetch(characterURL)
         .then((response) => response.json())
         .then((json) => characterInfo(json))
-    // .catch(window.location.href = "/error.html")
+        .catch(() => {
+            window.location = "/javascript-1-ca-master/error.html"
+        })
 
 }
 
@@ -24,7 +26,6 @@ const fetchData = async () => {
 //render information
 let markup = "";
 const characterInfo = (details) => {
-    console.dir(details)
     const container = document.querySelector(".detail-container")
     const {
         name,
@@ -34,10 +35,10 @@ const characterInfo = (details) => {
         location,
         image
     } = details
-
+    console.dir(details)
     markup += `
     <div class="detail-container">
-    <img class="details-image" src="${image}" alt="" />
+    <img class="details-image" src="${image}" alt="${name}" />
     <div class="detail-details">
         <h1>${name}</h1>
         <p>Status: <span class="value" id="status">${status}</span></p>
