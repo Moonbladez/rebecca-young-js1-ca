@@ -29,9 +29,9 @@ const characterInfo = (details) => {
     const container = document.querySelector(".detail-container")
 
     //loader information
-    const loader = document.querySelector(".loader")
+
     //hide loader
-    loader.style.display = "none"
+
     const {
         name,
         status,
@@ -40,7 +40,6 @@ const characterInfo = (details) => {
         location,
         image
     } = details
-    console.dir(details)
     markup += `
     <img class="details-image" src="${image}" alt="${name}" />
     <div class="detail-details">
@@ -51,12 +50,16 @@ const characterInfo = (details) => {
         <p>Location: <span class="value" id="location">${location.name}</span></p>                   
     </div>
     `
-    container.innerHTML = markup
+    container.innerHTML += markup
 
     //setting page title to character
-    document.title = details.name + " | " + document.title;
+    document.title = `${details.name} | ${document.title}`
 }
 
 
 
-fetchData().then((json) => characterInfo(json));
+fetchData().then((json) => {
+    const loader = document.querySelector(".loader")
+    loader.style.display = "none"
+    characterInfo(json)
+});
