@@ -1,32 +1,18 @@
-const baseUrl = ("https://rickandmortyapi.com/api/character/")
-
-
-
-
 //get data from api
 const fetchData = async () => {
-    return await fetch(baseUrl)
+    return await fetch("https://rickandmortyapi.com/api/character/")
         .then((response) => response.json())
         .then((json) => json)
-        .catch(() => {
-            window.location = "/javascript-1-ca-master/error.html"
-        })
+        .catch(() => window.location = "error.html")
 }
 
 //loop through results
 const iterateCharacters = (json) => {
     const results = json.results
 
-
     //render html
     const container = document.querySelector(".results")
     let markup = "";
-
-    //set unknown type as default
-    let type = " Unknown"
-
-
-
 
     results.forEach((result) => {
         const {
@@ -51,7 +37,11 @@ const iterateCharacters = (json) => {
         `
     })
 
-    container.innerHTML = markup;
+    container.innerHTML += markup;
 }
 
-fetchData().then((json) => iterateCharacters(json));
+fetchData().then((json) => {
+    iterateCharacters(json)
+    const loaderElement = document.querySelector(".loader")
+    loaderElement.style.display = "none"
+});

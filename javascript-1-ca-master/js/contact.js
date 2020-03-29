@@ -1,11 +1,15 @@
 const form = document.querySelector("#contactForm")
 
+
+
+
 const validateForm = (event) => {
+
 
     //first name
     const validateFirstName = () => {
         const input = document.querySelector("#firstName")
-        const error = document.querySelector("#firstNameError")
+        const error = input.nextElementSibling
 
         const inputValue = input.value
         if (inputValue == "") {
@@ -18,7 +22,7 @@ const validateForm = (event) => {
     //last name
     const validateLastName = () => {
         const input = document.querySelector("#lastName")
-        const error = document.querySelector("#lastNameError")
+        const error = input.nextElementSibling
 
         const inputValue = input.value
         if (inputValue == "") {
@@ -33,8 +37,9 @@ const validateForm = (event) => {
     //email address
     const valiateEmail = () => {
         const input = document.querySelector("#email")
-        const error = document.querySelector("#emailError")
-        const invalidError = document.querySelector("#invalidEmailError")
+        const error = input.nextElementSibling
+        const invalidError = error.nextElementSibling
+        
         const inputValue = input.value;
         const emailPattern = /\S+@\S+\.\S+/.test(inputValue);
 
@@ -55,7 +60,7 @@ const validateForm = (event) => {
     //message 
     const validateMessage = () => {
         const input = document.querySelector("#message")
-        const error = document.querySelector("#messageError")
+        const error = input.nextElementSibling
         const inputValue = input.value
 
         if (inputValue.length < 10) {
